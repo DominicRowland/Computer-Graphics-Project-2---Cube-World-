@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cube World – Roller Coaster</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">COMPUTER GRAPHICS · PROJECT 2</p>
+      <h1>Cube World</h1>
+      <p class="subtitle">Procedural terrain and a rideable roller coaster</p>
+    </div>
+    <div class="student">Dominic Rowland</div>
+  </header>
+
+  <main>
+    <section class="scene-panel">
+      <div class="scene-heading">
+        <div>
+          <h2>Cube World - Roller Coaster</h2>
+          <p>A coaster follows a Bézier track with a vertical loop.</p>
+        </div>
+      </div>
+      <canvas id="c" aria-label="3D image-based cube landscape"></canvas>
+    </section>
+
+
+    <section class="coaster-controls">
+      <div>
+        <h2>Coaster Controls</h2>
+        <p id="rideStatus">Train is running</p>
+      </div>
+      <div class="coaster-buttons">
+        <button id="rideButton" type="button">Pause ride</button>
+        <button id="cameraModeButton" type="button">Chase camera</button>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div class="control">
+        <label for="resolution">Terrain resolution</label>
+        <select id="resolution">
+          <option value="10">10 × 10 · 100 cubes</option>
+          <option value="25">25 × 25 · 625 cubes</option>
+          <option value="50" selected>50 × 50 · 2,500 cubes</option>
+          <option value="75">75 × 75 · 5,625 cubes</option>
+          <option value="100">100 × 100 · 10,000 cubes</option>
+          <option value="150">150 × 150 · 22,500 cubes</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="maxHeight">Maximum terrain height <span id="heightValue">9.0</span></label>
+        <input id="maxHeight" type="range" min="2" max="18" step="0.5" value="9">
+      </div>
+
+      <div class="control">
+        <label for="speed">Camera rotation speed <span id="speedValue">0.18</span></label>
+        <input id="speed" type="range" min="0" max="1" step="0.02" value="0.18">
+      </div>
+
+      <div class="control">
+        <label for="coasterSpeed">Coaster speed <span id="coasterSpeedValue">1.0×</span></label>
+        <input id="coasterSpeed" type="range" min="0.5" max="2.5" step="0.1" value="1">
+      </div>
+
+      <div class="control button-control">
+        <label>Camera</label>
+        <button id="rotateButton" type="button">Pause camera</button>
+      </div>
+
+      <div class="stats">
+        <div><span class="stat-number" id="cubeCount">2,500</span><span class="stat-label">Cubes drawn</span></div>
+        <div><span class="stat-number" id="resolutionLabel">50 × 50</span><span class="stat-label">Grid size</span></div>
+        <div><span class="stat-number">1</span><span class="stat-label">Terrain instanced draw call</span></div>
+      </div>
+    </section>
+
+    <section class="image-panel">
+      <div class="section-title">
+        <h2>Terrain image sources</h2>
+        <p>Upload your own PNG images.</p>
+      </div>
+      <div class="image-inputs">
+        <div class="image-source">
+          <label for="colorUpload">Color map (PNG or image)</label>
+          <input id="colorUpload" type="file" accept="image/*">
+          <span class="file-name" id="colorStatus">Loading sample color map…</span>
+          <p>RGB values determine the color of each cube.</p>
+        </div>
+        <div class="image-source">
+          <label for="heightUpload">Grayscale height map (PNG or image)</label>
+          <input id="heightUpload" type="file" accept="image/*">
+          <span class="file-name" id="heightStatus">Loading sample height map…</span>
+          <p>Brightness determines the height of each cube.</p>
+        </div>
+      </div>
+      <p id="loadStatus" class="load-status" role="status">Loading the included terrain images…</p>
+    </section>
+
+    <section class="notes">
+      <h2>How image sampling works</h2>
+      <p>
+        Each terrain grid cell samples one pixel from the color image and one pixel
+        from the height map. The color image's RGB values are divided by 255 to create
+        WebGL color values between 0 and 1. The height map's grayscale brightness is
+        converted into a height between 0.35 and the selected maximum height plus 0.35.
+        The sampled values are stored in instance buffers and rendered using one
+        instanced draw call.
+      </p>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

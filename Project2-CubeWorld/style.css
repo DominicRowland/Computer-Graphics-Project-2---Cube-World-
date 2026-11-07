@@ -1,0 +1,258 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #101a27;
+  color: #edf4fa;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px clamp(20px, 5vw, 72px);
+  background: #172638;
+  border-bottom: 1px solid #2b4055;
+}
+
+.eyebrow {
+  margin: 0 0 7px;
+  color: #8fb7d5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+h1, h2, p { margin-top: 0; }
+
+h1 {
+  margin-bottom: 4px;
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.subtitle {
+  margin: 0;
+  color: #aebdca;
+}
+
+.student {
+  color: #c5d4e0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+main {
+  width: min(1440px, 94%);
+  margin: 30px auto 60px;
+}
+
+.scene-panel, .controls, .image-panel, .notes {
+  overflow: hidden;
+  background: #192a3c;
+  border: 1px solid #2b4055;
+  border-radius: 14px;
+}
+
+.scene-heading, .section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.scene-heading h2, .notes h2, .section-title h2 {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.scene-heading p, .notes p, .section-title p {
+  margin-bottom: 0;
+  color: #aebdca;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: min(62vh, 620px);
+  min-height: 360px;
+  background: #7bb9df;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 18px;
+  padding: 22px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control label, .image-source label {
+  color: #dce8f1;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+select, button, input[type="file"] {
+  min-height: 42px;
+  padding: 8px 12px;
+  color: #edf4fa;
+  background: #263b50;
+  border: 1px solid #405b73;
+  border-radius: 7px;
+  font: inherit;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #70b6e5;
+}
+
+button { cursor: pointer; }
+button:hover, select:hover { background: #304b64; }
+
+.stats {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 14px;
+  padding-top: 17px;
+  border-top: 1px solid #2b4055;
+}
+
+.stats > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-number {
+  color: #f1f7fc;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.stat-label, .file-name {
+  color: #9fb2c2;
+  font-size: 12px;
+}
+
+.image-panel, .notes {
+  margin-top: 18px;
+  padding-bottom: 18px;
+}
+
+.section-title {
+  align-items: flex-start;
+}
+
+.image-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 0 22px;
+}
+
+.image-source {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 16px;
+  background: #21364a;
+  border: 1px solid #344e65;
+  border-radius: 9px;
+}
+
+.image-source input[type="file"] {
+  width: 100%;
+  font-size: 12px;
+}
+
+.image-source p {
+  margin: 0;
+  color: #9fb2c2;
+  font-size: 12px;
+}
+
+.file-name {
+  overflow-wrap: anywhere;
+}
+
+.load-status {
+  margin: 16px 22px 0;
+  color: #f0c77a;
+  font-size: 12px;
+}
+
+.load-status.loaded { color: #9cdbb2; }
+
+.notes {
+  padding: 20px 22px;
+}
+
+@media (max-width: 900px) {
+  .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .controls, .image-inputs { grid-template-columns: 1fr; }
+  .stats { grid-column: auto; flex-wrap: wrap; }
+  .stats > div { min-width: 120px; }
+  canvas { height: 55vh; min-height: 320px; }
+  .section-title { flex-direction: column; }
+}
+
+
+.coaster-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding: 18px 22px;
+  background: #192a3c;
+  border: 1px solid #2b4055;
+  border-radius: 14px;
+}
+
+.coaster-controls h2 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+
+.coaster-controls p {
+  margin: 0;
+  color: #aebdca;
+  font-size: 13px;
+}
+
+.coaster-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  .coaster-controls {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
